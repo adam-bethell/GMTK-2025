@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1x2v2yxtlsbd"]
+
+[ext_resource type="Script" uid="uid://cdvnu146rgld6" path="res://main.gd" id="1_ig7tw"]
+
+[sub_resource type="Environment" id="Environment_ig7tw"]
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 1.4
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_0xm2m"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_ig7tw")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-6.44512e-09, 0.98907, -0.147447, 4.32336e-08, 0.147447, 0.98907, 1, 2.04281e-14, -4.37114e-08, 2.64841, 12.3138, 5)
+
+[node name="Tiles" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ig7tw")
+camera_attributes = SubResource("CameraAttributesPractical_0xm2m")
