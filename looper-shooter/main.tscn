@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1x2v2yxtlsbd"]
+[gd_scene load_steps=7 format=3 uid="uid://b1x2v2yxtlsbd"]
 
 [ext_resource type="Script" uid="uid://cdvnu146rgld6" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://ccy2ndgoyis8u" path="res://scripts/BoardGraphics.gd" id="2_0xm2m"]
+[ext_resource type="ArrayMesh" uid="uid://nga4fn7tqik0" path="res://models/p1.obj" id="3_1bvp3"]
+[ext_resource type="ArrayMesh" uid="uid://cwkop536ecwn7" path="res://models/p2.obj" id="4_lquwl"]
 
 [sub_resource type="Environment" id="Environment_ig7tw"]
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 1.4
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_0xm2m"]
 
@@ -13,10 +15,24 @@ ambient_light_energy = 1.4
 script = ExtResource("1_ig7tw")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-6.44512e-09, 0.98907, -0.147447, 4.32336e-08, 0.147447, 0.98907, 1, 2.04281e-14, -4.37114e-08, 2.64841, 12.3138, 5)
+transform = Transform3D(-1.13104e-08, 0.965944, -0.258752, 4.22227e-08, 0.258752, 0.965944, 1, 7.99361e-15, -4.37114e-08, 2.64841, 7.83054, 5)
 
 [node name="Tiles" type="Node3D" parent="."]
+script = ExtResource("2_0xm2m")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ig7tw")
 camera_attributes = SubResource("CameraAttributesPractical_0xm2m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.000575989, 1, 0, -1, 0.000575989, 0, 0, 0)
+
+[node name="P1" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="P1"]
+mesh = ExtResource("3_1bvp3")
+
+[node name="P2" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="P2"]
+mesh = ExtResource("4_lquwl")

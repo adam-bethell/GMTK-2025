@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://buxepwo623mq1"]
+
+[ext_resource type="ArrayMesh" uid="uid://cksr8w1lwf1ds" path="res://models/Wall.obj" id="1_vcdp5"]
+
+[node name="Pillar" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.323233, 0)
+mesh = ExtResource("1_vcdp5")

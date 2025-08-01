@@ -1,13 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2f2ricimo07o"]
+[gd_scene load_steps=2 format=3 uid="uid://d2f2ricimo07o"]
 
-[ext_resource type="ArrayMesh" uid="uid://c1c5lbtewsttl" path="res://models/block-grass-overhang-large.obj" id="1_qta37"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t3yum"]
-albedo_color = Color(0.525554, 0.500944, 0.946711, 1)
+[ext_resource type="ArrayMesh" uid="uid://d73jaf4k3ryx" path="res://models/FloorTile.obj" id="1_qta37"]
 
 [node name="Block" type="Node3D"]
 
-[node name="Block-grass-overhang-large" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.49, 0, 0, 0, 0.49, 0, 0, 0, 0.49, 0, -0.512769, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, -0.132298, 0)
 mesh = ExtResource("1_qta37")
-surface_material_override/0 = SubResource("StandardMaterial3D_t3yum")

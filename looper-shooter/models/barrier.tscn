@@ -1,13 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://can0r2i36punl"]
+[gd_scene load_steps=2 format=3 uid="uid://can0r2i36punl"]
 
-[ext_resource type="ArrayMesh" uid="uid://bnin0qykdr7cc" path="res://models/block-moving-large.obj" id="1_lu82o"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m7n7s"]
-albedo_color = Color(1, 0.227451, 1, 1)
+[ext_resource type="ArrayMesh" uid="uid://cr5wudadpryo6" path="res://models/CornerWall.obj" id="1_lu82o"]
 
 [node name="Block" type="Node3D"]
 
-[node name="Block-moving-large" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00899985, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.330498, 0)
 mesh = ExtResource("1_lu82o")
-surface_material_override/0 = SubResource("StandardMaterial3D_m7n7s")

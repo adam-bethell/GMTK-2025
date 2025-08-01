@@ -1,28 +1,62 @@
 extends Node3D
 
-var tilePrefab = preload("res://models/block.tscn")
-var wallPrefab = preload("res://models/barrier.tscn")
+enum action {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, SHOOT_UP, SHOOT_DOWN, SHOOT_LEFT, SHOOT_RIGHT}
+var action2vector = {
+	action.MOVE_UP: Vector2i(0,1),
+	action.MOVE_DOWN: Vector2i(0,-1),
+	action.MOVE_LEFT: Vector2i(-1,0),
+	action.MOVE_RIGHT: Vector2i(1,0)
+}
+var p1timeline = {}
+var p2timeline = {}
+var p1pos = Vector2i(1, 1)
+var p2pos = Vector2i(8, 8)
 
-var p1pos = null
-var p2pos = null
+var walls = [
+	Vector2i(8, 1), Vector2i(9, 3), Vector2i(6, 3), 
+	Vector2i(0, 6), Vector2i(1, 8), Vector2i(3, 6),
+	Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3), Vector2i(3, 2), Vector2i(3, 1),
+	Vector2i(8, 6), Vector2i(7, 6), Vector2i(6, 6), Vector2i(6, 7), Vector2i(6, 8)
+	]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var x := 10
-	var y := 10
+	$P1.position = Vector3(p1pos.y, 0.0, p1pos.x)
+	$P2.position = Vector3(p2pos.y, 0.0, p2pos.x) 
 
-	for i in range(x):
-		for j in range(y):
-			var go: Node3D = tilePrefab.instantiate()
-			$Tiles.add_child(go)
-			go.position = Vector3(j, 0.0, i)
-			
-	var wallPositions = [Vector2i(2,2), Vector2i(2,3)]
-	for pos in wallPositions:
-		var go: Node3D = wallPrefab.instantiate()
-		$Tiles.add_child(go)
-		go.position = Vector3(pos.y, 0.0, pos.x)
-			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	
+	var action_pressed = null
+	if Input.is_action_just_pressed("p1up"):
+		action_pressed = action.MOVE_UP
+	elif Input.is_action_just_pressed("p1down"):
+		action_pressed = action.MOVE_DOWN
+	elif Input.is_action_just_pressed("p1left"):
+		action_pressed = action.MOVE_LEFT
+	elif Input.is_action_just_pressed("p1right"):
+		action_pressed = action.MOVE_RIGHT
+	
+	if not action_pressed == null:
+		p1pos = move(p1pos, action_pressed)
+		$P1.position = p1pos
+	
+	action_pressed = null
+	if Input.is_action_just_pressed("p2up"):
+		action_pressed = action.MOVE_UP
+	elif Input.is_action_just_pressed("p2down"):
+		action_pressed = action.MOVE_DOWN
+	elif Input.is_action_just_pressed("p2left"):
+		action_pressed = action.MOVE_LEFT
+	elif Input.is_action_just_pressed("p2right"):
+		action_pressed = action.MOVE_RIGHT
+		
+	if not action_pressed == null:
+		p2pos = move(p2pos, action_pressed)
+		$P2.position = p2pos
+		
+func move(p, a) -> Vector2i:
+	var newPosition = p + action2vector[a]
+	if not newPosition in walls:
+		return newPosition
+	return p		
