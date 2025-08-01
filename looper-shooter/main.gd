@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 	
 	if not action_pressed == null:
 		p1pos = move(p1pos, action_pressed)
-		$P1.position = p1pos
+		$P1.position = coord2pos(p1pos)
 	
 	action_pressed = null
 	if Input.is_action_just_pressed("p2up"):
@@ -53,10 +53,23 @@ func _process(delta: float) -> void:
 		
 	if not action_pressed == null:
 		p2pos = move(p2pos, action_pressed)
-		$P2.position = p2pos
+		$P2.position = coord2pos(p2pos)
 		
 func move(p, a) -> Vector2i:
 	var newPosition = p + action2vector[a]
-	if not newPosition in walls:
+	if isSpaceFree(newPosition):
 		return newPosition
-	return p		
+	return p
+	
+func isSpaceFree(p: Vector2i) -> bool:
+	if p in walls:
+		return false
+	if p in [p1pos, p2pos]:
+		return false
+	if p.x < 0 or p.x > 9 or p.y < 0 or p.y > 9:
+		return false
+	return true
+	
+	
+func coord2pos (v2: Vector2i) -> Vector3:
+	return Vector3(v2.y, 0.0, v2.x)
