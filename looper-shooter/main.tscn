@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1x2v2yxtlsbd"]
+[gd_scene load_steps=8 format=3 uid="uid://b1x2v2yxtlsbd"]
 
 [ext_resource type="Script" uid="uid://cdvnu146rgld6" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://ccy2ndgoyis8u" path="res://scripts/BoardGraphics.gd" id="2_0xm2m"]
 [ext_resource type="ArrayMesh" uid="uid://nga4fn7tqik0" path="res://models/p1.obj" id="3_1bvp3"]
 [ext_resource type="ArrayMesh" uid="uid://cwkop536ecwn7" path="res://models/p2.obj" id="4_lquwl"]
+[ext_resource type="Script" uid="uid://b176r8643xfey" path="res://scripts/Clock.gd" id="5_lquwl"]
 
 [sub_resource type="Environment" id="Environment_ig7tw"]
 ambient_light_source = 3
@@ -36,3 +37,33 @@ mesh = ExtResource("3_1bvp3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="P2"]
 mesh = ExtResource("4_lquwl")
+
+[node name="Clock" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("5_lquwl")
+
+[node name="Head" type="ColorRect" parent="Clock"]
+custom_minimum_size = Vector2(10, 80)
+layout_mode = 1
+offset_right = 10.0
+offset_bottom = 80.0
+color = Color(0.556863, 0.262745, 1, 0.533333)
+
+[node name="Label" type="RichTextLabel" parent="Clock"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 41.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0:000"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+drag_and_drop_selection_enabled = false
