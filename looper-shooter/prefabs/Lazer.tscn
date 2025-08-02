@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cadan2tj51qjt"]
+
+[ext_resource type="ArrayMesh" uid="uid://jc3wit7at15s" path="res://models/Laser.obj" id="1_nnvlc"]
+[ext_resource type="Script" uid="uid://bhj6codpccdlb" path="res://scripts/lazerLife.gd" id="1_pu0y7"]
+
+[node name="Lazer" type="Node3D"]
+script = ExtResource("1_pu0y7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.224705, 0)
+mesh = ExtResource("1_nnvlc")

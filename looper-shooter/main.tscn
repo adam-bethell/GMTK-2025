@@ -1,16 +1,68 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1x2v2yxtlsbd"]
+[gd_scene load_steps=29 format=3 uid="uid://b1x2v2yxtlsbd"]
 
 [ext_resource type="Script" uid="uid://cdvnu146rgld6" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://ccy2ndgoyis8u" path="res://scripts/BoardGraphics.gd" id="2_0xm2m"]
 [ext_resource type="ArrayMesh" uid="uid://nga4fn7tqik0" path="res://models/p1.obj" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://ds26ysch4lj8t" path="res://prefabs/explosion.tscn" id="4_kek77"]
 [ext_resource type="ArrayMesh" uid="uid://cwkop536ecwn7" path="res://models/p2.obj" id="4_lquwl"]
 [ext_resource type="Script" uid="uid://b176r8643xfey" path="res://scripts/Clock.gd" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://cffidwkj6rutj" path="res://scripts/ClockLabel.gd" id="6_7mycd"]
+[ext_resource type="Script" uid="uid://dkg8x2wdkjrmn" path="res://scripts/RoundLabel.gd" id="7_272bh"]
+[ext_resource type="Script" uid="uid://3nb2n1mxd8uw" path="res://scripts/Explode.gd" id="9_4c57u"]
+[ext_resource type="Script" uid="uid://dd3vl6f46fqnu" path="res://scripts/scoreboard.gd" id="10_4c57u"]
+[ext_resource type="AudioStream" uid="uid://0flgq5sr5e2d" path="res://audio/step1.wav" id="11_2cqfq"]
+[ext_resource type="AudioStream" uid="uid://kosoj3ea810d" path="res://audio/step2.wav" id="12_yaehf"]
+[ext_resource type="AudioStream" uid="uid://deoydo58vtvd3" path="res://audio/laser1.wav" id="13_074og"]
+[ext_resource type="AudioStream" uid="uid://bmb0rxwtufrug" path="res://audio/laser2.wav" id="14_cegan"]
+[ext_resource type="AudioStream" uid="uid://d04xwd407yct0" path="res://audio/win1.wav" id="15_82xsv"]
+[ext_resource type="AudioStream" uid="uid://exyls5df2p10" path="res://audio/win2.wav" id="16_getpj"]
+[ext_resource type="AudioStream" uid="uid://ctxp8tm0sacuk" path="res://audio/Gmtk-ost-1.wav" id="17_ryguw"]
+[ext_resource type="AudioStream" uid="uid://b4g2xvvgms780" path="res://audio/Gmtk-ost-2.wav" id="18_d13ii"]
+[ext_resource type="AudioStream" uid="uid://c6jy34keckmda" path="res://audio/Gmtk-ost-3.wav" id="19_1u8w0"]
+[ext_resource type="AudioStream" uid="uid://dkaj5hjw3v2w" path="res://audio/Gmtk-ost-4.wav" id="20_0odxb"]
+[ext_resource type="AudioStream" uid="uid://blm2s0cmk3jla" path="res://audio/Gmtk-ost-5.wav" id="21_lswn8"]
+[ext_resource type="Script" uid="uid://nw77bja8uacl" path="res://scripts/MusicController.gd" id="22_a6jrf"]
 
 [sub_resource type="Environment" id="Environment_ig7tw"]
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_0xm2m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5vw27"]
+font_size = 27
+font_color = Color(0.101961, 0.32549, 0.615686, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_efxa6"]
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_4c57u"]
+font_size = 25
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_ryguw"]
+fade_time = 0.0
+stream_count = 21
+stream_0 = ExtResource("17_ryguw")
+stream_1 = ExtResource("18_d13ii")
+stream_2 = ExtResource("19_1u8w0")
+stream_3 = ExtResource("20_0odxb")
+stream_4 = ExtResource("21_lswn8")
+stream_5 = ExtResource("21_lswn8")
+stream_6 = ExtResource("21_lswn8")
+stream_7 = ExtResource("21_lswn8")
+stream_8 = ExtResource("21_lswn8")
+stream_9 = ExtResource("21_lswn8")
+stream_10 = ExtResource("21_lswn8")
+stream_11 = ExtResource("21_lswn8")
+stream_12 = ExtResource("21_lswn8")
+stream_13 = ExtResource("21_lswn8")
+stream_14 = ExtResource("21_lswn8")
+stream_15 = ExtResource("21_lswn8")
+stream_16 = ExtResource("21_lswn8")
+stream_17 = ExtResource("21_lswn8")
+stream_18 = ExtResource("21_lswn8")
+stream_19 = ExtResource("21_lswn8")
+stream_20 = ExtResource("21_lswn8")
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_ig7tw")
@@ -33,37 +85,185 @@ transform = Transform3D(1, 0, 0, 0, 0.000575989, 1, 0, -1, 0.000575989, 0, 0, 0)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="P1"]
 mesh = ExtResource("3_1bvp3")
 
+[node name="explosion" parent="P1" instance=ExtResource("4_kek77")]
+
 [node name="P2" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="P2"]
 mesh = ExtResource("4_lquwl")
 
+[node name="explosion" parent="P2" instance=ExtResource("4_kek77")]
+
 [node name="Clock" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("5_lquwl")
 
 [node name="Head" type="ColorRect" parent="Clock"]
-custom_minimum_size = Vector2(10, 80)
-layout_mode = 1
+layout_mode = 2
 offset_right = 10.0
 offset_bottom = 80.0
 color = Color(0.556863, 0.262745, 1, 0.533333)
 
-[node name="Label" type="RichTextLabel" parent="Clock"]
-clip_contents = false
+[node name="Label" type="Label" parent="Clock"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "0:000"
+horizontal_alignment = 1
+script = ExtResource("6_7mycd")
+
+[node name="RoundLabel" type="ColorRect" parent="Clock"]
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_272bh")
+
+[node name="Label" type="Label" parent="Clock/RoundLabel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 41.0
-offset_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "0:000"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
+text = "Round 1
+5 x MOVE"
+label_settings = SubResource("LabelSettings_5vw27")
 horizontal_alignment = 1
 vertical_alignment = 1
-drag_and_drop_selection_enabled = false
+
+[node name="ActionsContainer" type="Control" parent="Clock"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Lazer" type="Node3D" parent="."]
+script = ExtResource("9_4c57u")
+
+[node name="Scoreboard" type="Control" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 3
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("10_4c57u")
+
+[node name="Text" type="Label" parent="Scoreboard"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -74.165
+offset_top = -37.5
+offset_right = -23.165
+offset_bottom = 37.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "Scores
+p1: 
+p2:"
+label_settings = SubResource("LabelSettings_efxa6")
+vertical_alignment = 1
+
+[node name="p1Score" type="Label" parent="Scoreboard"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -37.5
+offset_bottom = 37.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_efxa6")
+vertical_alignment = 1
+
+[node name="p2Score" type="Label" parent="Scoreboard"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = 1.0
+offset_bottom = 76.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_efxa6")
+vertical_alignment = 1
+
+[node name="Instructions" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Instructions"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 16.68
+offset_top = -55.5
+offset_right = 270.68
+offset_bottom = 55.5
+grow_vertical = 2
+text = "Controls
+p1 (yellow): WASD
+p2 (pink): Arrow Keys"
+label_settings = SubResource("LabelSettings_4c57u")
+
+[node name="Audio1Step" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_2cqfq")
+max_polyphony = 5
+
+[node name="Audio2Step" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_yaehf")
+max_polyphony = 5
+
+[node name="Audio1Laser" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_074og")
+max_polyphony = 5
+
+[node name="Audio2Laser" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_cegan")
+max_polyphony = 5
+
+[node name="Audio1Win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_82xsv")
+max_polyphony = 5
+
+[node name="Audio2Win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_getpj")
+max_polyphony = 5
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPlaylist_ryguw")
+script = ExtResource("22_a6jrf")

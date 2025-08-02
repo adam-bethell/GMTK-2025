@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://mf7hhhwn3aun"]
+
+[node name="p1Mark" type="ColorRect"]
+offset_top = 35.0
+offset_right = 10.0
+offset_bottom = 45.0
+color = Color(1, 1, 0, 1)

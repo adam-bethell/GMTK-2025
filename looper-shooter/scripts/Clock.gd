@@ -1,5 +1,8 @@
 extends Node
 
+var p1mark = preload("res://prefabs/p_1_mark.tscn")
+var p2mark = preload("res://prefabs/p_2_mark.tscn")
+
 var time: float = 0.0
 var paused: bool = true
 
@@ -21,5 +24,16 @@ func setPause(p: bool) -> void:
 	paused = p
 	
 func _updateLabel() -> void:
-	$Label.text = "%.3f" % time
+	$Label.setTime(time)
 	$Head.position.x = 1152 * (time / 5.0)
+	
+func placeAction(p: int) -> void:
+	var go: ColorRect = null
+	if p == 1:
+		go = p1mark.instantiate()
+	elif p == 2:
+		go = p2mark.instantiate()
+		
+	$ActionsContainer.add_child(go)
+	go.position.x = $Head.position.x
+	
